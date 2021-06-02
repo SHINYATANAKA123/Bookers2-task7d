@@ -1,0 +1,23 @@
+<h2>Follow Users</h2>
+<% if @users.present? %>
+  <table class="table table-sm">
+  <thead>
+    <th>image</th>
+    <th>name</th>
+    <th colspan="4"></th>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+    <tr>
+      <td><%= attachment_image_tag user, :profile_image, :fill, 50, 50,fallback: "no_image.jpg"%></td>
+      <td><%= user.name %></td>
+      <td>フォロー数：<%= user.active_relationships.count %></td>
+      <td>フォロワー数：<%= user.passive_relationships.count %></td>
+      <td><%= link_to "Show", "/users/#{user.id}" %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
+  ユーザーはいません
+<% end %>
